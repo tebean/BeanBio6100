@@ -1,4 +1,5 @@
 name: "My-Website"
+output_dir: docs
 navbar:
   title: "Taylor Bean's Website"
   left:
