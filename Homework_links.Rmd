@@ -9,3 +9,4 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Week 1 Homework [Homework1.Rmd](Homework1.html)
+addding stuff
