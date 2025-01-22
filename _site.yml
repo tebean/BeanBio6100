@@ -1,8 +1,11 @@
-name: "my-website"
+name: "My-Website"
 navbar:
-  title: "My Website"
+  title: "Taylor Bean's Website"
   left:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Homework_Links"
+      href: Homework_Links.html
+
