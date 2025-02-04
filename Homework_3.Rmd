@@ -1,0 +1,117 @@
+---
+title: "Homework_3"
+output: html_document
+date: "2025-02-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+#1
+Find: \s{2, }
+Replace ,
+Explanation:
+\s matches any whitespace character
+{2,} this is a quantifier that specifies how many times the preceding pattern (\'s) should appear
+{2,} means 2 or more times so it will match two or more white space characters in a row
+, means I want to replace any instance or two or more consecutive white spaces with a comma
+
+#2
+Find: ([A-Za-z]+), \s*([A-Za-z]+), \s*(.*)
+Replace: \2 \1 (\3)
+Explanation:
+([A-Za-z]+) captures a sequence of one or more letters
+[A-Za-a] matches any character between A-Z (uppercase) and a-z (lowercase)
++ means one or more of the preceding letters
+the () make this capturing group
+,\s*
+, mathces the literal comma
+\s* matches zero or more with whitespace characters
+([A-Za-z]+) captures another sequence of one or more letters
+,\s* again matches the comma and surrounding white space
+(*.) matches any characters zero or more times to capture the remaining string (the institution name)
+() around capture everything after the second name
+\2 refers to the second capturing group
+\1 refers to the first capturing group 
+(\3) refers to the third capturing group and surrounds it in parentheses
+
+#3
+To split the lines:
+Find: (\d{4}.*?\.mp3)
+Replace: \1\n
+To remove spaces at beginning:
+Find:(?<=\n)\s+
+Replace:(nothing) 
+
+#4
+To convert to underscores:
+Find:(\d{4})\s(.*\.mp3)
+Replace:\2_\1
+Explanation:
+(\d{4}) captures the 4-digit number
+\s matches the space after the number(.*\.mp3) captures the rest of the file name
+\2_\1 rearranges the captured parts to place the title and .mp3 first followed by the number at the end
+
+#5
+Find: (\w)(\w+),(\w+),(.+),(\d+)
+Replace: \1_\3,\5
+Explanation:
+(\w) captures the first letter of the first word
+(\w+) captures the rest of the first word
+(\w+) captures the entire second word
+(.+) captures everything in third column
+(.\d+) captures only digits from 4th column
+\1 matches first letter of first word
+_ inserts underscore
+\3 inserts entire second word
+, inserts comma
+\5 inserts fourth column
+
+#6
+Find: (\w)(\w+),(\w{4})(\w+),(.+),(\d+)
+Replace: \1_\3,\6
+Explanation:
+(\w) captures the first letter of the first word
+(\w+) captures the rest of the first word
+(\w{4}) captrues the first 4 letters of the second word
+(\w+) captures the rest of the second word
+(.+) captures everything in third column
+(\d+) captures only digits from fourth column
+\1 first letter of first word
+_ inserts underscore
+\3 insets penn
+, inserts comma
+\6 fourth column
+
+#7
+Find: ^(\w{3})\w+?,(\w{3})\w+?,([\d.]+),(\d+)
+Replace:\1\2, \4, \3
+Explanation:
+^(\w{4})\w+? captures the first 3 letters of the first word
+,(\w{3})\w+? captures the first 3 letters of the second word
+,([\d.]+) captures the third column 
+,(\d+) captures the fourth column
+\1\2 combines first 3 letters of first and second words
+\4 inserts the last column 
+, \3 inserts comma and space and third column
+
+#8 
+Find: \bNA\b
+Replace: 0
+This fixes the pathogenbinary 	umn so instead of 1 or 0, it is all numberic values, 0 or 1
+
+Find: [-@!^+_%()\*#\$]+
+Replace: nothing
+removes special characters from bombus spp and host plant 	umns
+
+Find:\bworker|male\b\s?=\t
+Replace: \1
+removes the spaces after worker or male
+
+
+
+
+
