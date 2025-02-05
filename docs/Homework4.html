@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2025-01-22" />
+<meta name="date" content="2025-02-05" />
 
-<title>Homework_Files</title>
+<title>Homework4</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -264,15 +264,96 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework_Files</h1>
-<h4 class="date">2025-01-22</h4>
+<h1 class="title toc-ignore">Homework4</h1>
+<h4 class="date">2025-02-05</h4>
 
 </div>
 
 
-<p>Week 2 Homework <a href="Homework1.html">Homework_1</a> Week 3
-Homework <a href="Homework_3.html">Homework_3.Rmd</a> Week 4 Homework <a
-href="Homework4.html">Homework4.Rmd</a></p>
+<p>#1 Assign values to variables</p>
+<pre><code>x &lt;- 1.1
+a &lt;- 2.2
+b &lt;- 3.3</code></pre>
+<p>Compute each expr4ession and store it in z Expression 1:</p>
+<pre><code>z &lt;- x^(a^b)
+print(z)</code></pre>
+<p>Expression 2:</p>
+<pre><code>z &lt;- (x^a)^b
+print(z)</code></pre>
+<p>Expression 3:</p>
+<pre><code>z &lt;- 3*x^3 + 2*x^2 + 1
+print(z)</code></pre>
+<p>#2 Vector 1:</p>
+<pre><code>vec1 &lt;- c(seq(1,8,1), seq(7,1,-1)
+print(vec1)</code></pre>
+<p>Vector 2: <code>vec2 &lt;- rep(1:5, times 1:5) print(vec2)</code></p>
+<p>Vector 3:</p>
+<pre><code>vec3 &lt;- rep(5:1, times 1:5)
+print(vec3)</code></pre>
+<p>#3 Generate 2 random uniform numbers (x,y) between 0 and 1</p>
+<pre><code>set.seed(42) #setting for reproducibility
+coords &lt;- runif(2, min=0, max=1)
+x &lt;- coords[1]
+y &lt;- coords[2]</code></pre>
+<p>Convert to polar coordinates (r, theta)</p>
+<pre><code>r &lt;- sqrt(x^2 + y^2) #compute radius
+theta &lt;- atan2(y,x) #compute angle in radians</code></pre>
+<p>Print results</p>
+<pre><code>cat(&quot;Caresian Coordinates: (x,y) =&quot;, x, y, &quot;\n&quot;)
+car(&quot;Polar Coordinates: (r, theta) =&quot;, r, theta, &quot;\n&quot;)</code></pre>
+<p>#4 Initial queue</p>
+<pre><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+print(queue)</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li>The serpent arrives and gets in line</li>
+</ol>
+<pre><code>queue &lt;- c(queue, &quot;serpent&quot;)
+print(queue)</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>The sheep enters the ark (remove first element)</li>
+</ol>
+<pre><code>queue &lt;- queue[-1]
+print(queue)</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>The donkey arrives and talks his way to the front of the line</li>
+</ol>
+<pre><code>queue &lt;- c(&quot;donkey&quot;, queue)
+print(queue)</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>The serpent gets impatient and leaves</li>
+</ol>
+<pre><code>queue &lt;- queue[queue[queue != &quot;serpent&quot;]
+print(queue)</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>The owel gets board and leaves</li>
+</ol>
+<pre><code>queue &lt;- queue[queue != &quot;owl&quot;]
+print(queue)</code></pre>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>The aphid arrives, and the ant invites him to cut in line (aphid
+before ant)</li>
+</ol>
+<pre><code>queue &lt;- append(queue, &quot;aphid&quot;, after = match(&quot;ant&quot;, queue) -1)
+print(queue)</code></pre>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>Determine the position of aphid</li>
+</ol>
+<pre><code>aphid_position &lt;- match(&quot;aphid&quot;, queue)
+cat(&quot;The aphid is at position:&quot;, aphid_position, &quot;\n&quot;</code></pre>
+<p>#5 Generate sequence from 1 to 100</p>
+<pre><code>numbers &lt;- 1:100</code></pre>
+<p>apply filtering condiiton</p>
+<pre><code>condition1 &lt;- numbers %% 2 != 0 #keeps numbers not divisible by 2
+condition2 &lt;- numbers %% 3 != 0 #keeps numbers not divisible by 3
+condition3 &lt;- numbers %% 7 != 0 #keeps numbers not divisible by 7</code></pre>
+<p>Print each condition’s TRUE/FALSE values</p>
+<pre><code>print(condition1)
+print(condition2)
+print(condition3)</code></pre>
+<p>Combine all conditions using &amp;</p>
+<pre><code>filtered_numbers &lt;- numbers[condition1 &amp; condition2 &amp; condition3]</code></pre>
+<p>Print final filtered numbers</p>
+<pre><code>print(filtered_numbers)</code></pre>
 
 
 

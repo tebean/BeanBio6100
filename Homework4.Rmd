@@ -1,0 +1,140 @@
+---
+title: "Homework4"
+output: html_document
+date: "2025-02-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1
+Assign values to variables
+```
+x <- 1.1
+a <- 2.2
+b <- 3.3
+```
+Compute each expr4ession and store it in z
+Expression 1: 
+```
+z <- x^(a^b)
+print(z)
+```
+
+Expression 2:
+```
+z <- (x^a)^b
+print(z)
+```
+
+Expression 3:
+```
+z <- 3*x^3 + 2*x^2 + 1
+print(z)
+```
+#2
+Vector 1:
+```
+vec1 <- c(seq(1,8,1), seq(7,1,-1)
+print(vec1)
+```
+
+Vector 2:
+```vec2 <- rep(1:5, times 1:5)
+print(vec2)
+```
+
+Vector 3:
+```
+vec3 <- rep(5:1, times 1:5)
+print(vec3)
+```
+
+#3
+Generate 2 random uniform numbers (x,y) between 0 and 1
+```
+set.seed(42) #setting for reproducibility
+coords <- runif(2, min=0, max=1)
+x <- coords[1]
+y <- coords[2]
+```
+Convert to polar coordinates (r, theta)
+```
+r <- sqrt(x^2 + y^2) #compute radius
+theta <- atan2(y,x) #compute angle in radians
+```
+Print results
+```
+cat("Caresian Coordinates: (x,y) =", x, y, "\n")
+car("Polar Coordinates: (r, theta) =", r, theta, "\n")
+```
+
+#4
+Initial queue
+```
+queue <- c("sheep", "fox", "owl", "ant")
+print(queue)
+```
+a. The serpent arrives and gets in line
+```
+queue <- c(queue, "serpent")
+print(queue)
+```
+b. The sheep enters the ark (remove first element)
+```
+queue <- queue[-1]
+print(queue)
+```
+
+c. The donkey arrives and talks his way to the front of the line
+```
+queue <- c("donkey", queue)
+print(queue)
+```
+d. The serpent gets impatient and leaves
+```
+queue <- queue[queue[queue != "serpent"]
+print(queue)
+```
+e. The owel gets board and leaves
+```
+queue <- queue[queue != "owl"]
+print(queue)
+```
+f. The aphid arrives, and the ant invites him to cut in line (aphid before ant)
+```
+queue <- append(queue, "aphid", after = match("ant", queue) -1)
+print(queue)
+```
+g. Determine the position of aphid
+```
+aphid_position <- match("aphid", queue)
+cat("The aphid is at position:", aphid_position, "\n"
+```
+#5
+Generate sequence from 1 to 100
+```
+numbers <- 1:100
+```
+
+apply filtering condiiton
+```
+condition1 <- numbers %% 2 != 0 #keeps numbers not divisible by 2
+condition2 <- numbers %% 3 != 0 #keeps numbers not divisible by 3
+condition3 <- numbers %% 7 != 0 #keeps numbers not divisible by 7
+```
+Print each condition's TRUE/FALSE values
+```
+print(condition1)
+print(condition2)
+print(condition3)
+```
+Combine all conditions using &
+```
+filtered_numbers <- numbers[condition1 & condition2 & condition3]
+```
+Print final filtered numbers
+```
+print(filtered_numbers)
+```
