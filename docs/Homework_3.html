@@ -272,54 +272,142 @@ $(document).ready(function () {
 
 <div id="r-markdown" class="section level2">
 <h2>R Markdown</h2>
-<p>#1 Find: Replace , Explanation: matches any whitespace character {2,}
-this is a quantifier that specifies how many times the preceding pattern
-('s) should appear {2,} means 2 or more times so it will match two or
-more white space characters in a row , means I want to replace any
-instance or two or more consecutive white spaces with a comma</p>
-<p>#2 Find: ([A-Za-z]+), ([A-Za-z]+), (.<em>) Replace: \2 \1 (\3)
-Explanation: ([A-Za-z]+) captures a sequence of one or more letters
-[A-Za-a] matches any character between A-Z (uppercase) and a-z
-(lowercase) + means one or more of the preceding letters the () make
-this capturing group ,, mathces the literal comma matches zero or more
-with whitespace characters ([A-Za-z]+) captures another sequence of one
-or more letters ,again matches the comma and surrounding white space
-(</em>.) matches any characters zero or more times to capture the
-remaining string (the institution name) () around capture everything
-after the second name \2 refers to the second capturing group \1 refers
-to the first capturing group (\3) refers to the third capturing group
-and surrounds it in parentheses</p>
-<p>#3 To split the lines: Find: (.*?.mp3) Replace: \1 To remove spaces
-at beginning: Find:(?&lt;=)+ Replace:(nothing)</p>
-<p>#4 To convert to underscores: Find:()(.<em>.mp3) Replace:\2_\1
-Explanation: () captures the 4-digit number matches the space after the
-number(.</em>.mp3) captures the rest of the file name \2_\1 rearranges
-the captured parts to place the title and .mp3 first followed by the
-number at the end</p>
-<p>#5 Find: ()(+),(+),(.+),() Replace: \1_\3,\5 Explanation: () captures
-the first letter of the first word (+) captures the rest of the first
-word (+) captures the entire second word (.+) captures everything in
-third column (.) captures only digits from 4th column \1 matches first
-letter of first word _ inserts underscore \3 inserts entire second word
-, inserts comma \5 inserts fourth column</p>
-<p>#6 Find: ()(+),()(+),(.+),() Replace: \1_\3,\6 Explanation: ()
-captures the first letter of the first word (+) captures the rest of the
-first word () captrues the first 4 letters of the second word (+)
-captures the rest of the second word (.+) captures everything in third
-column () captures only digits from fourth column \1 first letter of
-first word _ inserts underscore \3 insets penn , inserts comma \6 fourth
+#1
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find:\s\{2,\quad\}
+\]</span></p>
+<p><span class="math display">\[
+\text{Replace :} \quad \text{,}
+\]</span></p>
+</div>
+<p>Explanation: This looks for two or more consecutive white spaces or
+tabs and replaces it with a comma</p>
+#2
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: ([A-Za-z]+),\quad\ \s*([A-Za-z]+),\quad\ \s*(.*)
+\]</span></p>
+<p><span class="math display">\[
+Replace: \2\quad\ \1\quad\ (\3)
+\]</span></p>
+</div>
+<p>Explanation: This captures the last name, first name, and institution
+from a comma-separated format, allowing for flexible spaces. The
+replacement reorders the first name and last name while placing the
+institution inside parentheses</p>
+<p>#3</p>
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: (\d\{4\}.*?\.mp3)
+\]</span> <span class="math display">\[
+Replace:\quad\1\n
+\]</span></p>
+</div>
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find:(?&lt;=\n)\s+
+\]</span> <span class="math display">\[
+\text{Replace:(nothing)}
+\]</span></p>
+</div>
+<p>The first find and replace removes the space at the begining and the
+second find replace splits the lines</p>
+<p>#4</p>
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find:(\d\{4\})\s(.*\.mp3)
+\]</span> <span class="math display">\[
+Replace:\verb|\2_\1|
+\]</span></p>
+</div>
+<p>Explanation: This captures the 4-digit number and the space after the
+number and then the rest of the file name and then rearranges the
+captured parts to place the title and .mp3 first followed by the number
+at the end</p>
+#5
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: (\w)(\w+),(\w+),(.+),(\d+)
+\]</span></p>
+<p><span class="math display">\[
+Replace:\verb|\1_\3,\5|
+\]</span></p>
+</div>
+<p>Explanation: This captures the first letter of the first word,
+captures the rest of the first word, captures the entire second word,
+captures everything in third column, and captures only digits from 4th
+column. It replaces the first letter of the first word, inserts and
+underscore and then inserts the entire second word, inserta a comma then
+inserts the fourth column</p>
+#6
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: (\w)(\w+),(\w{4})(\w+),(.+),(\d+)
+\]</span></p>
+<p><span class="math display">\[
+Replace:\verb|\1_\3,\6|
+\]</span></p>
+</div>
+<p>Explanation: Captures the first letter of the first word, the rest of
+the first word, the first 4 letters of the second word, the rest of the
+second word, captures everything in third column, only digits from
+fourth column and replaces with the first letter of first word,inserts
+an underscore, insets penn, inserts a comma, and then the fourth
 column</p>
-<p>#7 Find: ^()+?,()+?,([]+),() Replace:\1\2, \4, \3 Explanation: ^()+?
-captures the first 3 letters of the first word ,()+? captures the first
-3 letters of the second word ,([]+) captures the third column ,()
-captures the fourth column \1\2 combines first 3 letters of first and
-second words \4 inserts the last column , \3 inserts comma and space and
-third column</p>
-<p>#8 Find: eplace: 0 This fixes the pathogenbinary umn so instead of 1
-or 0, it is all numberic values, 0 or 1</p>
-<p>Find: [-@!^+_%()*#$]+ Replace: nothing removes special characters
-from bombus spp and host plant umns</p>
-<p>Find:|male?=eplace: \1 removes the spaces after worker or male</p>
+#7
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: ^(\w{3})\w+?,(\w{3})\w+?,([\d.]+),(\d+)
+\]</span></p>
+<p><span class="math display">\[
+Replace:\1\2,\quad\4,\quad\3
+\]</span></p>
+</div>
+<p>Explanation: This captures the first 3 letters of the first word, the
+first 3 letters of the second word, the third column,the fourth column,
+and then combines first 3 letters of first and second words, inserts the
+last column and then inserts comma and space and third column</p>
+#8
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: \bNA\b
+\]</span> <span class="math display">\[
+Replace: 0
+\]</span></p>
+</div>
+<p>This fixes the pathogenbinary column so instead of 1 or 0, it is all
+numberic values, 0 or 1</p>
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find: \verb|[-@!^+_%()\*#\$]+|
+\]</span></p>
+<p><span class="math display">\[
+Replace: nothing
+\]</span></p>
+</div>
+<p>This removes special characters from bombus_spp and host_plant
+columns</p>
+<div
+style="border: 2px solid black; padding: 10px; display: inline-block;">
+<p><span class="math display">\[
+Find:\bworker|male\b\s?=\t
+\]</span></p>
+<p><span class="math display">\[
+Replace: \1
+\]</span></p>
+</div>
+<p>This removes the spaces after worker or male</p>
 </div>
 
 
