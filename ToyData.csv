@@ -1,0 +1,9 @@
+#comments at the top
+#beaucoup metadata
+ID,Treatment,Biomass,Notes
+1,Control,10.2
+2,Control,1004
+3,#enter a comment in the middle of your dataframe!
+4,Treatment,NA,Broken sensor
+5,Treatment,23
+

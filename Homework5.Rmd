@@ -1,0 +1,150 @@
+---
+title: "Homework5"
+output: html_document
+date: "2025-02-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1 
+```
+#Assign a single random integer between 3 and 10 n_dims
+set.seed(Sys.time()) #Ensure different values for each run
+n_dimes <_ sample (3:10, 1)
+
+#Create a vector of consecutive integers from 1 to n_dims^2
+vec <- 1:(n_dims^2)
+
+#Randomly shuffle these values
+shuffled_vec <- sample(vec)
+
+#create a square matrix
+matrix_obj <- matrix(shuffled_vec, nrow = n_dims, ncol = n_dims)
+
+#Print the original matrix
+print("Original Matrix:")
+print(matrix_obj)
+
+#Transpose the matrix using the t() function
+transposed_matrix <- t(matrix_obj)
+
+#Print the transposed matrix
+print("Transposed Matrix:")
+print(transposed_matrix)
+
+#Calculate sum and mean of the first and last rows
+first_row_sum <- sum(matrix_obj[1, ])
+first_row_mean <- mean(matrix_obj[1, ])
+last_row_sum <- sum(matrix_obj[n_dims, ])
+last_row_mean <- mean(matrix_obj[n_dims, ])
+
+print(paste("First row sum:", first_row_sum))
+print(paste("First row mean:", first_row_mean))
+print(paste("Last row sum:", last_row_sum))
+print(paste("Last row mean:", last_row_mean))
+
+#Use the eigen() function on the matrix
+eigen_result <- eigen(matrix_obj)
+
+#Print eigen values and eigen vectors
+print("Eigenvalues:")
+print(eigen_result$values)
+print("Eigenvectors:")
+print(eigen_result$vectors)
+
+#Check the type of eigen values and eigen vectors
+print(paste("Type of eigenvalues:", typeof(eigen_result$values)))
+print(paste("Type of eigenvectors:", typeof(eigen_result$vectors)))
+```
+
+#2
+```
+#Create a 4x4 matrix filled with random uniform values
+set.seed(123) #For reproducibility
+my_matrix <- matrix(runig(16), nrow=4, ncol=4)
+
+#Create a 100-element logival vector (TRUE/FALSE)
+my_logical <- runif(100) > 0.5 #Generates TRUE if value >0.5 , FALSE otherwise
+
+#Create a 26-element vector of lowercase letters in random order
+my_letters <- sample(letters)
+
+#Create a list with these named elements
+my_list <- list(
+  my_matrix = my_matrix,
+  my_logical = my_logical,
+  my_letters = my_letters
+)
+
+#Create a new list with specific elements
+new_list <- list (
+  matrix_element = my_list$my_matrix[2, 2], #element [2,2] from matrix
+  logical_element= my_list$my_logical[2], #second element of logical vector
+  letter_element = my_list$my_letters[2] #second element of letter vector
+)
+
+#Print the new list
+print("New List:")
+print(new_list)
+
+#Check data types using typeof()
+print("Data types of new list components:")
+print(typeof(new_list$matrix_element)) # type of matrix element
+print(typeof(new_list$logical_element)) #type of logical element
+print(typeof(new_list$letter_element)) #type of letter element
+
+#Combine the elements into a single atomic vector
+atomic_vector <- c(new_list$matrix_element, new_list$logical_element, new_list$letter_element)
+
+#Print the atomic vector
+print("Combined Atomic Vector:")
+print(atomic_vector)
+
+#Check data type of the combined atomic vector
+print("Data type of combined atomic vector:")
+print(typeof(atomic_vector))
+```
+
+#3
+```
+#Set seed for reproducibility
+set.seed(123)
+
+#Create a data framw with two variables
+my_data <-data.frame(
+  my_unis = runif(26, min = 0, max = 10), #26 random uniform values
+  my_letters = sample(LETTERS) #26 capital letters in random order
+)
+
+#Print the original data frame
+print("Original Data Frame:")
+print(my_data)
+
+#Replace 4 random numbers in 'my_unis' column with NA
+my_data$my_unis[sample(1:26, 4)] <- NA
+
+#Print the modified data frame 
+print("Data Frame with NA values:")
+print(my_data)
+
+#Identify which rows have missing values in 'my_unis'
+na_rows <- which(is.na(my_data$my_unis))
+print("Rows with missing values:"
+print(na_rows)
+
+#Reorder the data frams by 'my_letters' in alphabetical order
+my_data <- my_data[order(my_data$my_letters), ]
+
+#Print the sorted data frame
+print("Reordered Data Frame:")
+print(my_data)
+
+#Calculate the mean of 'my_unis' column, ignoring NA values
+column_mean <- mean(my_data$my_unis, na.rm = TRUE)
+print(paste("Mean of my_unis (excluding NAs):", column_mean))
+```
+
+  
+  
