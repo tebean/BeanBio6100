@@ -36,19 +36,19 @@ print(z)
 #2
 Vector 1:
 ```{r}
-vec1 <- c(seq(1,8,1), seq(7,1,-1)
+vec1 <- c(seq(1,8,1), seq(7,1,-1))
 print(vec1)
 ```
 
 Vector 2:
 ```{r}
-vec2 <- rep(1:5, times 1:5)
+vec2 <- rep(1:5, times = 1:5)
 print(vec2)
 ```
 
 Vector 3:
 ```{r}
-vec3 <- rep(5:1, times 1:5)
+vec3 <- rep(5:1, times = 1:5)
 print(vec3)
 ```
 
@@ -68,7 +68,7 @@ theta <- atan2(y,x) #compute angle in radians
 Print results
 ```{r}
 cat("Caresian Coordinates: (x,y) =", x, y, "\n")
-car("Polar Coordinates: (r, theta) =", r, theta, "\n")
+cat("Polar Coordinates: (r, theta) =", r, theta, "\n")
 ```
 
 #4
@@ -95,7 +95,7 @@ print(queue)
 ```
 d. The serpent gets impatient and leaves
 ```{r}
-queue <- queue[queue[queue != "serpent"]
+queue <- queue[queue != "serpent"]
 print(queue)
 ```
 e. The owel gets board and leaves
@@ -111,7 +111,7 @@ print(queue)
 g. Determine the position of aphid
 ```{r}
 aphid_position <- match("aphid", queue)
-cat("The aphid is at position:", aphid_position, "\n"
+cat("The aphid is at position:", aphid_position, "\n")
 ```
 #5
 Generate sequence from 1 to 100

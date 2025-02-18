@@ -1,0 +1,53 @@
+---
+title: "Homework5"
+output: html_document
+date: "2025-02-12"
+name: "Taylor Bean"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1
+```
+#Assign a random integer between 3 and 10 to n_dims
+set.seed(Sys.time()) #Ensures randomness each run
+n_dimes <- sample(3:10, 1)
+
+#Create a vector of consecutive integers from 1 to n_dims^2
+vec <- 1:(n_dims^2)
+
+#Shuffle the vector
+shuffled_vec <- sample(vec)
+
+#Create a square matrix
+matric_obj <- matrix(shuffled_vec, nrow = n_dims, ncol = n_dims)
+
+#Print out the matrix
+print("Original Matrix:")
+print(matrix_obj)
+
+#Transpose the matrix
+transposed_matrix <- t(matrix_obj)
+
+#Print transposed matrix
+print("Transposed Matrix:")
+print(transposed_matrix)
+
+#Calculate sum and mean of first and last row
+first_row_sum <- sum(matrix_obj[1, ])
+first_row_mean <- mean(matrix_obj[1, ])
+last_row_sum <- sum(matrix_obj[n_dims, ])
+last_row_mean <- mean(matrix_obj[n_dims, ])
+
+print(paste("First row sum:", first_row_sum))
+print(paste("First row mean:", first_row_mean))
+print(paste("Last row sum:", last_row_sum))
+print(paste("Last row mean:", last_row_mean))
+
+#USe the eigen() function on the matrix
+eigen_result <- eigen(matrix_obj)
+
+
+
