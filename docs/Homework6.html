@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2025-02-19" />
+
+<title>Homework6</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taylor Bean's Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Homework_Files.html">Homework_Files</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework6</h1>
+<h4 class="date">2025-02-19</h4>
+
+</div>
+
+
+<ol style="list-style-type: decimal">
+<li><p>In this assignment I will be making a data set for the effect of
+Sema6A on eye cohesion. We will be measuring the number of dissociated
+cells in treatment without Sema6A and with Sema6A. We predict that when
+treated with Sema6A there will be a decrease in the number of ectopic
+(dissociated) cells.</p></li>
+<li><p>Group 1 (mock): Expected to have around 80-100 dissociated cells
+(mean=90, variance=25, n=20) Group 2 (sema6A): Expected to have around
+0-20 cells (mean=10, variance=5, n=20)</p></li>
+<li><p>Generate the data set:</p></li>
+</ol>
+<pre class="r"><code># Set seed for reproducibility
+set.seed(42)
+
+#Parameters for each group
+group1_size &lt;- 20 #Mock group size n=20
+group2_size &lt;- 20 #Sema6A group n=20
+
+#Define means and variances for each group
+group1_mean &lt;- 90 #mock group mean
+group1_variance &lt;- 25 #mock group variance
+group2_mean &lt;- 10 #sema6a group mean
+group2_variance &lt;- 5 #sema6a group variance
+
+#Generate random data for both groups
+group1_data &lt;- rnorm(group1_size, mean= group1_mean, sd = sqrt(group1_variance))
+group2_data &lt;- rnorm(group2_size, mean = group2_mean, sd = sqrt(group2_variance))
+
+#Combine the data into a single data frame
+df &lt;- data.frame(
+  dissociated_cells = c(group1_data, group2_data),
+  group= rep(c(&quot;mock&quot;, &quot;sema6a&quot;), times = c(group1_size, group2_size))
+)
+
+#View the first few rows of the data
+head(df)</code></pre>
+<pre><code>##   dissociated_cells group
+## 1          96.85479  mock
+## 2          87.17651  mock
+## 3          91.81564  mock
+## 4          93.16431  mock
+## 5          92.02134  mock
+## 6          89.46938  mock</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Perform statistical analysis</li>
+</ol>
+<pre class="r"><code>#Perform t-test to compare the means between the two groups
+t_test_result &lt;- t.test(dissociated_cells ~ group, data = df)
+#Print t-test result
+print(t_test_result)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  dissociated_cells by group
+## t = 51.988, df = 24.323, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group mock and group sema6a is not equal to 0
+## 95 percent confidence interval:
+##  78.32969 84.80142
+## sample estimates:
+##   mean in group mock mean in group sema6a 
+##            90.959600             9.394044</code></pre>
+<p>Visualize the data</p>
+<pre class="r"><code>#Load ggplot2 for visulaization
+library(ggplot2)
+
+#Create a boxplot to visualize the data
+ggplot(df, aes(x = group, y = dissociated_cells)) +
+  geom_boxplot() +
+  labs(title= &quot;Number of Dissociated: Mock v.s. Sema^A Treatment&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="Homework6_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+5. I was able to run this multiple times with different random numbers
+to see the variation within the different data sets given the same
+parameters. In all of the cases, the p-value was significant.</p>
+<pre class="r"><code>p_values &lt;- numeric(100)
+
+for (i in 1:100) {
+  group1_data &lt;- rnorm(group1_size, mean = group1_mean, sd = sqrt(group1_variance))
+  group2_data &lt;- rnorm(group2_size, mean = group2_mean, sd = sqrt(group2_variance))
+  
+  # Combine the data
+  df &lt;- data.frame(dissociated_cells = c(group1_data, group2_data),
+                   group = rep(c(&quot;mock&quot;, &quot;sema6A&quot;), times = c(group1_size, group2_size)))
+  
+  # Perform t-test and save p-value
+  t_test_result &lt;- t.test(dissociated_cells ~ group, data = df)
+  p_values[i] &lt;- t_test_result$p.value
+}
+#Calculate proportion of significant values (p&lt;0.05)
+significant_results &lt;- mean(p_values &lt; 0.05)
+print(paste(&quot;Proportion of significant results:&quot;, significant_results))</code></pre>
+<pre><code>## [1] &quot;Proportion of significant results: 1&quot;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Using for loops to adjust the parameters.</li>
+</ol>
+<pre class="r"><code># Define the sample sizes to explore
+sample_sizes &lt;- c(2,5,10, 20, 30, 40)  # For example, n = 10, 20, 30, 40
+
+# Create an empty data frame to store results
+results &lt;- data.frame(sample_size = sample_sizes, proportion_significant = numeric(length(sample_sizes)))
+
+# Loop through each sample size and perform the simulation
+for (size in sample_sizes) {
+  p_values &lt;- numeric(100)  # To store p-values for 100 simulations
+  
+  for (i in 1:100) {
+    # Generate random data for both groups using the current sample size
+    group1_data &lt;- rnorm(size, mean = group1_mean, sd = sqrt(group1_variance))
+    group2_data &lt;- rnorm(size, mean = group2_mean, sd = sqrt(group2_variance))
+    
+    # Combine the data into a data frame
+    df &lt;- data.frame(dissociated_cells = c(group1_data, group2_data),
+                     group = rep(c(&quot;mock&quot;, &quot;sema6A&quot;), times = c(size, size)))
+    
+    # Perform t-test and save p-value
+    t_test_result &lt;- t.test(dissociated_cells ~ group, data = df)
+    p_values[i] &lt;- t_test_result$p.value
+  }
+  
+  # Calculate the proportion of significant results (p &lt; 0.05)
+  results$proportion_significant[results$sample_size == size] &lt;- mean(p_values &lt; 0.05)
+}
+
+# View the results
+print(results)</code></pre>
+<pre><code>##   sample_size proportion_significant
+## 1           2                    0.9
+## 2           5                    1.0
+## 3          10                    1.0
+## 4          20                    1.0
+## 5          30                    1.0
+## 6          40                    1.0</code></pre>
+<p>Larger samples tend to reduce variability. Below n=5 there starts to
+be an increase in the proportion of non significant p-values when run
+with 100 different random data sets.</p>
+<p>Exploring effect size</p>
+<pre class="r"><code># Define the sample sizes (same as before)
+sample_size &lt;- 20  # n = 20 for each group
+
+# Define the variances (same as before)
+group1_variance &lt;- 25
+group2_variance &lt;- 5
+
+# Create an empty data frame to store results
+effect_sizes &lt;- seq(80, 5, by = -5)  # Explore effect sizes from 80 down to 5
+results &lt;- data.frame(effect_size = effect_sizes, proportion_significant = numeric(length(effect_sizes)))
+
+# Loop through each effect size and perform the simulation
+for (effect_size in effect_sizes) {
+  p_values &lt;- numeric(100)  # To store p-values for 100 simulations
+  
+  # Define the new means based on the current effect size
+  group1_mean &lt;- 90  # Mock group mean
+  group2_mean &lt;- group1_mean - effect_size  # Adjust the Sema6A mean based on the effect size
+  
+  for (i in 1:100) {
+    # Generate random data for both groups using the current sample size
+    group1_data &lt;- rnorm(sample_size, mean = group1_mean, sd = sqrt(group1_variance))
+    group2_data &lt;- rnorm(sample_size, mean = group2_mean, sd = sqrt(group2_variance))
+    
+    # Combine the data into a data frame
+    df &lt;- data.frame(dissociated_cells = c(group1_data, group2_data),
+                     group = rep(c(&quot;mock&quot;, &quot;sema6A&quot;), times = c(sample_size, sample_size)))
+    
+    # Perform t-test and save p-value
+    t_test_result &lt;- t.test(dissociated_cells ~ group, data = df)
+    p_values[i] &lt;- t_test_result$p.value
+  }
+  
+  # Calculate the proportion of significant results (p &lt; 0.05)
+  results$proportion_significant[results$effect_size == effect_size] &lt;- mean(p_values &lt; 0.05)
+}
+
+# View the results
+print(results)</code></pre>
+<pre><code>##    effect_size proportion_significant
+## 1           80                   1.00
+## 2           75                   1.00
+## 3           70                   1.00
+## 4           65                   1.00
+## 5           60                   1.00
+## 6           55                   1.00
+## 7           50                   1.00
+## 8           45                   1.00
+## 9           40                   1.00
+## 10          35                   1.00
+## 11          30                   1.00
+## 12          25                   1.00
+## 13          20                   1.00
+## 14          15                   1.00
+## 15          10                   1.00
+## 16           5                   0.96</code></pre>
+<p>The results remain significant for effect sizes down to 10 but once
+an effect size of 5 is reached the proportion of non-significant
+p-values increases</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Determining the minimum sample size required to detect a
+statistically significant effect for the hypothesized effect sizes</li>
+</ol>
+<pre class="r"><code># Define a sequence of sample sizes to test
+sample_sizes &lt;- seq(5, 100, by = 5)  # Test sample sizes from 5 to 100
+effect_size &lt;- 80  # The hypothesized effect size (difference between means: 90 - 10)
+
+# Store results: sample size and proportion of significant results
+results &lt;- data.frame(sample_size = sample_sizes, proportion_significant = numeric(length(sample_sizes)))
+
+# Parameters
+group1_mean &lt;- 90  # Mock group mean
+group2_mean &lt;- 10  # Sema6A group mean
+group1_variance &lt;- 25  # Mock group variance
+group2_variance &lt;- 5  # Sema6A group variance
+num_reps &lt;- 10  # Number of repetitions per sample size
+
+# Loop through each sample size and perform the simulation
+for (size in sample_sizes) {
+  p_values &lt;- numeric(num_reps)  # Store p-values for 10 repetitions
+  
+  for (rep in 1:num_reps) {
+    # Adjust the second group mean based on the effect size
+    group2_mean &lt;- group1_mean - effect_size  # Make Sema6A mean based on effect size
+    
+    # Generate random data for both groups
+    group1_data &lt;- rnorm(size, mean = group1_mean, sd = sqrt(group1_variance))
+    group2_data &lt;- rnorm(size, mean = group2_mean, sd = sqrt(group2_variance))
+    
+    # Combine the data into a data frame
+    df &lt;- data.frame(dissociated_cells = c(group1_data, group2_data),
+                     group = rep(c(&quot;mock&quot;, &quot;sema6A&quot;), times = c(size, size)))
+    
+    # Perform t-test and save p-value
+    t_test_result &lt;- t.test(dissociated_cells ~ group, data = df)
+    p_values[rep] &lt;- t_test_result$p.value
+  }
+  
+  # Calculate the proportion of significant results (p &lt; 0.05)
+  results$proportion_significant[results$sample_size == size] &lt;- mean(p_values &lt; 0.05)
+}
+
+# Print the results
+print(results)</code></pre>
+<pre><code>##    sample_size proportion_significant
+## 1            5                      1
+## 2           10                      1
+## 3           15                      1
+## 4           20                      1
+## 5           25                      1
+## 6           30                      1
+## 7           35                      1
+## 8           40                      1
+## 9           45                      1
+## 10          50                      1
+## 11          55                      1
+## 12          60                      1
+## 13          65                      1
+## 14          70                      1
+## 15          75                      1
+## 16          80                      1
+## 17          85                      1
+## 18          90                      1
+## 19          95                      1
+## 20         100                      1</code></pre>
+<pre class="r"><code># Find the minimum sample size with a proportion of significant results &gt; 0.80
+min_significant_sample_size &lt;- min(results$sample_size[results$proportion_significant &gt;= 0.80])
+cat(&quot;The minimum sample size needed to detect a statistically significant effect with &gt; 80% power is:&quot;, min_significant_sample_size, &quot;\n&quot;)</code></pre>
+<pre><code>## The minimum sample size needed to detect a statistically significant effect with &gt; 80% power is: 5</code></pre>
+<p>As the sample size increases, the proportion of significant results
+also increases. By running the simulation for different sample sizes, we
+can see that when the sample size reaches 40, the proportion of
+significant results is above 80%. Hence, for the hypothesized effect
+size of 80, the minimum sample size needed to detect a statistically
+significant effect with 80% power is 5.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Gamma distribution</li>
+</ol>
+<pre class="r"><code># Parameters for desired means and variances
+mock_mean &lt;- 90
+mock_variance &lt;- 25
+sema_mean &lt;- 10
+sema_variance &lt;- 5
+sample_size &lt;- 20  # Sample size for each group
+num_reps &lt;- 10  # Number of repetitions
+
+# Function to adjust Gamma distribution parameters based on desired mean and variance
+adjust_gamma_params &lt;- function(mean, variance) {
+  # For Gamma distribution, variance = shape / rate^2, mean = shape / rate
+  rate &lt;- mean / (variance / mean)
+  shape &lt;- mean^2 / variance
+  return(list(shape = shape, rate = rate))
+}
+
+# Adjust parameters for the two groups
+mock_gamma_params &lt;- adjust_gamma_params(mock_mean, mock_variance)
+sema_gamma_params &lt;- adjust_gamma_params(sema_mean, sema_variance)
+
+# Store p-values from multiple repetitions
+p_values_all_reps &lt;- matrix(ncol = num_reps, nrow = 1)
+
+# Loop through repetitions and perform the t-test
+for (rep in 1:num_reps) {
+  # Generate random data using Gamma distribution for both groups
+  group1_data &lt;- rgamma(sample_size, shape = mock_gamma_params$shape, rate = mock_gamma_params$rate)
+  group2_data &lt;- rgamma(sample_size, shape = sema_gamma_params$shape, rate = sema_gamma_params$rate)
+  
+  # Combine data into a data frame
+  df &lt;- data.frame(dissociated_cells = c(group1_data, group2_data),
+                   group = rep(c(&quot;mock&quot;, &quot;sema6A&quot;), times = c(sample_size, sample_size)))
+  
+  # Perform t-test and save p-value
+  t_test_result &lt;- t.test(dissociated_cells ~ group, data = df)
+  p_values_all_reps[rep] &lt;- t_test_result$p.value
+}
+
+# Print all p-values and calculate the proportion of significant results
+print(p_values_all_reps)</code></pre>
+<pre><code>##           [,1]      [,2]      [,3]      [,4]      [,5]       [,6]      [,7]
+## [1,] 0.6375911 0.4318985 0.3388418 0.5242104 0.7203007 0.08328355 0.9349325
+##          [,8]      [,9]     [,10]
+## [1,] 0.356336 0.8322031 0.2839559</code></pre>
+<pre class="r"><code># Calculate and print the proportion of significant results (p &lt; 0.05)
+significant_count &lt;- sum(p_values_all_reps &lt; 0.05)
+cat(&quot;Proportion of significant results:&quot;, significant_count / num_reps, &quot;\n&quot;)</code></pre>
+<pre><code>## Proportion of significant results: 0</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
