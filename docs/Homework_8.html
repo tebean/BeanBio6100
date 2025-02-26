@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2025-01-22" />
+<meta name="date" content="2025-02-26" />
 
-<title>Homework_Files</title>
+<title>Homework_8</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -264,18 +264,117 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework_Files</h1>
-<h4 class="date">2025-01-22</h4>
+<h1 class="title toc-ignore">Homework_8</h1>
+<h4 class="date">2025-02-26</h4>
 
 </div>
 
 
-<p>Week 2 Homework <a href="Homework1.html">Homework_1</a></p>
-<p>Week 3 Homework <a href="Homework_3.html">Homework_3</a></p>
-<p>Week 4 Homework <a href="Homework4.html">Homework4</a></p>
-<p>Week 5 Homework <a href="Homework5.html">Homework5</a></p>
-<p>Week 6 Homework <a href="Homework6.html">Homework6</a></p>
-<p>Week 7 Homework <a href="Homework8.html">Homework_8</a></p>
+<pre class="r"><code>#Load tidyverse
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>#Load the iris dataset
+data(iris)
+
+#1. Examine structure of the iris dataset
+glimpse(iris)</code></pre>
+<pre><code>## Rows: 150
+## Columns: 5
+## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
+## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
+## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
+## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
+## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
+<pre class="r"><code>dim(iris) #Check the number of observations and variables</code></pre>
+<pre><code>## [1] 150   5</code></pre>
+<pre class="r"><code>#2. Create iris 1: filter for species &quot;virginica&quot; and &quot;versicolor with Sepal.Length &gt;6 and Sepal.Widths &gt;2.5
+iris1 &lt;- iris%&gt;%
+  filter(Species %in% c(&quot;virginica&quot;, &quot;versicolor&quot;),
+    Sepal.Length &gt; 6,
+    Sepal.Width &gt; 2.5)
+    
+dim(iris1) #check dimensions of iris1</code></pre>
+<pre><code>## [1] 56  5</code></pre>
+<pre class="r"><code>#3. Create iris2: select only Species, Sepal.Length, and Sepal. Width
+iris2 &lt;- iris1 %&gt;%
+  select(Species, Sepal.Length, Sepal.Width)
+dim(iris2) #check dimensions of iris2</code></pre>
+<pre><code>## [1] 56  3</code></pre>
+<pre class="r"><code>#4. Create iris3: arrange by Sepal.length in descending order
+iris3 &lt;- iris2 %&gt;%
+  arrange(desc(Sepal.Length))
+head(iris3) #display the first 6 rows</code></pre>
+<pre><code>##     Species Sepal.Length Sepal.Width
+## 1 virginica          7.9         3.8
+## 2 virginica          7.7         3.8
+## 3 virginica          7.7         2.6
+## 4 virginica          7.7         2.8
+## 5 virginica          7.7         3.0
+## 6 virginica          7.6         3.0</code></pre>
+<pre class="r"><code>#5. Create iris4: Add a new colun Sepal.Area (Sepal.Length *Sepal.Width)
+iris4 &lt;- iris3 %&gt;%
+  mutate(Sepal.Area = Sepal.Length * Sepal.Width)
+dim(iris4) #Check dimensions of iris4 </code></pre>
+<pre><code>## [1] 56  4</code></pre>
+<pre class="r"><code>#6. Creae iris5: Summarize to get mean Sepal.Length, mean Sepal. Width, and sample size
+iris5 &lt;- iris4 %&gt;%
+  summarize(
+    Avg_Sepal_Length = mean(Sepal.Length),
+    Avg_Sepal_Width = mean(Sepal.Width),
+    Sample_Size = n()
+  )
+print(iris5)</code></pre>
+<pre><code>##   Avg_Sepal_Length Avg_Sepal_Width Sample_Size
+## 1         6.698214        3.041071          56</code></pre>
+<pre class="r"><code>#7. Create iris6: Group by species and summarize mean Sepal.Length, meanS epal.Width, and sample size
+iris6 &lt;- iris4 %&gt;%
+  group_by(Species) %&gt;%
+  summarize(
+    Avg_Sepal_Length = mean(Sepal.Length),
+    Avg_Sepal_Width = mean(Sepal.Width),
+    Sample_Size = n()
+  )
+print(iris6)</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   Species    Avg_Sepal_Length Avg_Sepal_Width Sample_Size
+##   &lt;fct&gt;                 &lt;dbl&gt;           &lt;dbl&gt;       &lt;int&gt;
+## 1 versicolor             6.48            2.99          17
+## 2 virginica              6.79            3.06          39</code></pre>
+<pre class="r"><code>#8. rewrite steps using piping to create irisFinal
+irisFinal &lt;- iris %&gt;%
+  filter(Species %in% c(&quot;virginica&quot;, &quot;versicolor&quot;),
+         Sepal.Length &gt; 6,
+         Sepal.Width &gt; 2.5) %&gt;%
+  select(Species, Sepal.Length, Sepal.Width)%&gt;%
+  arrange(desc(Sepal.Length)) %&gt;%
+  mutate(Septal.Area =Sepal.Length * Sepal.Width)
+dim(irisFinal) #Check dimensions of irisFinal</code></pre>
+<pre><code>## [1] 56  4</code></pre>
+<pre class="r"><code>#9. Create a &quot;longer&quot; format data frame with three columns: Species, Measure, and Value
+
+iris_long &lt;- iris %&gt;%
+  pivot_longer(cols = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+               names_to = &quot;Measure&quot;,
+               values_to = &quot;Value&quot;)
+head(iris_long) #Display first 6 rows of the longer dataset</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   Species Measure      Value
+##   &lt;fct&gt;   &lt;chr&gt;        &lt;dbl&gt;
+## 1 setosa  Sepal.Length   5.1
+## 2 setosa  Sepal.Width    3.5
+## 3 setosa  Petal.Length   1.4
+## 4 setosa  Petal.Width    0.2
+## 5 setosa  Sepal.Length   4.9
+## 6 setosa  Sepal.Width    3</code></pre>
 
 
 
