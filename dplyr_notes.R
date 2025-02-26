@@ -71,3 +71,52 @@ select(starwars_lbs, 1:3, mass_lbs, everything())#using select allows us to brin
 #if you only wanted the new variable, you can use transmute function
 transmute(starwarsClean, mass_lbs=mass*2.2)
 transmute(starwarsClean, mass, mass_lbs=mass*2.2)
+
+#summarize() and group_by() collapse many values down to single summary
+summarize(starwarsClean, meanHeight=mean(height)) #gives the summary stat for the entire tibble
+
+summarize(starwars, meanHeight=mean(height))
+#Get NA because there are NA values in this dataset, does not work properly if data set is not clean
+
+summarize(starwars, meanHeight=mean(height, na.rm=TRUE), TotalNumber=n())
+#use group_by() for additional calculations
+starwarsGender <- group_by(starwars, gender)
+head(starwarsGender)
+
+summarize(starwarsGender, meanHeight=mean(height, na.rm=TRUE), number=n())
+
+##pipe statements, or piping %>%
+#these are sequences of actions that wull change your dataset
+#it will let you pass an intermediate result onto the next function in sequence
+#you should avoid this when you need to manipulate more than one object at a time, or if there are meaningful intermediate objects
+#formatting: should always have a space before it and usually followed by a new line (usually automatic indent)
+
+starwarsClean%>%
+  group_by(gender)%>%
+  summarize(meanHeight=mean(height, na.rm=T), number=n())
+
+#case_when() is useful for multiple conditional ifelse statements
+
+starwarsClean%>%
+  mutate(sp=case_when(species=="Human" ~ "Human", TRUE ~"Non-human"))%>%
+  select(name, sp, everything())
+
+#long to wide format and vice-versa
+glimpse(starwarsClean)
+#make dataset wider
+wideSW <- starwarsClean%>%
+  select(name, sex, height)%>%
+  pivot_wider(names_from=sex, values_from=height, values_fill=NA)
+wideSW
+pivotSW<-starwars%>%
+  select(name, homeworld)%>%
+  group_by(homeworld)%>%
+  mutate(rn=row_number())%>%
+  ungroup()%>%
+  pivot_wider(names_from=homeworld, values_from=name)
+head(pivotSW)
+
+#make dataset longer
+glimpse(wideSW)
+wideSW%>%
+  pivot_longer(cols = male: female, names_to="sex", values_to="height", values_drop_na=T)
