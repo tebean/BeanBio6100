@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2025-03-19" />
+
+<title>Homework6</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taylor Bean's Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Homework_Files.html">Homework_Files</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework6</h1>
+<h4 class="date">2025-03-19</h4>
+
+</div>
+
+
+<pre class="r"><code>#Load necessary librarues
+library(ggplot2)
+library(MASS)
+z &lt;- read.table(&quot;cellular_biology_data.csv&quot;,header=TRUE,sep=&quot;,&quot;)
+str(z)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    3000 obs. of  2 variables:
+##  $ ID              : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Cell_Diameter_um: num  2.39 1.49 1.38 1.38 4.65 ...</code></pre>
+<pre class="r"><code>summary(z)</code></pre>
+<pre><code>##        ID         Cell_Diameter_um  
+##  Min.   :   1.0   Min.   : 0.02586  
+##  1st Qu.: 750.8   1st Qu.: 0.99538  
+##  Median :1500.5   Median : 1.70819  
+##  Mean   :1500.5   Mean   : 2.01654  
+##  3rd Qu.:2250.2   3rd Qu.: 2.68111  
+##  Max.   :3000.0   Max.   :13.61023</code></pre>
+<p>Plot histogram of data</p>
+<pre class="r"><code># Plot histogram of cell diameters
+p1 &lt;- ggplot(data=z, aes(x=Cell_Diameter_um, y=..density..)) +
+  geom_histogram(color=&quot;grey60&quot;, fill=&quot;cornsilk&quot;, size=0.2) +
+  geom_density(linetype=&quot;dotted&quot;, size=0.75)  # Add empirical density curve</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>print(p1)</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(density)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+The histogram shows the distribution of the data. The empirical density
+curve helps visualize the spread and shape.</p>
+<p>Fit statistical distribution</p>
+<p>Fit a normal distribution</p>
+<pre class="r"><code>normPars &lt;- fitdistr(z$Cell_Diameter_um, &quot;normal&quot;)
+meanML &lt;- normPars$estimate[&quot;mean&quot;]
+sdML &lt;- normPars$estimate[&quot;sd&quot;]
+
+# Plot normal probability density
+xval &lt;- seq(0, max(z$Cell_Diameter_um), len=length(z$Cell_Diameter_um))
+stat &lt;- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour=&quot;red&quot;, 
+                      n = length(z$Cell_Diameter_um), args = list(mean = meanML, sd = sdML))
+p1 + stat</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+The red curve represents the normal distribution fit. The mean is
+slightly biased due to the lack of negative values</p>
+<p>Fit an exponential distribution</p>
+<pre class="r"><code>expoPars &lt;- fitdistr(z$Cell_Diameter_um, &quot;exponential&quot;)
+rateML &lt;- expoPars$estimate[&quot;rate&quot;]
+
+# Plot exponential probability density
+stat2 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour=&quot;blue&quot;, 
+                       n = length(z$Cell_Diameter_um), args = list(rate=rateML))
+p1 + stat + stat2</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+The blue curve represents the exponential distribution fit. Exponential
+distributions model skewed data, but I will compare this to other
+fits.</p>
+<p>Fit a uniform distribution</p>
+<pre class="r"><code>stat3 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour=&quot;darkgreen&quot;, 
+                       n = length(z$Cell_Diameter_um), args = list(min=min(z$Cell_Diameter_um), max=max(z$Cell_Diameter_um)))
+p1 + stat + stat2 + stat3</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+The green curve represents the uniform distribution, but it does not
+seem to fit this data set well since it is not uniformly
+distributed.</p>
+<p>Fit a gamma distribution</p>
+<pre class="r"><code>gammaPars &lt;- fitdistr(z$Cell_Diameter_um, &quot;gamma&quot;)</code></pre>
+<pre><code>## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
+## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
+## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced</code></pre>
+<pre class="r"><code>shapeML &lt;- gammaPars$estimate[&quot;shape&quot;]
+rateML &lt;- gammaPars$estimate[&quot;rate&quot;]
+
+# Plot gamma probability density
+stat4 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour=&quot;brown&quot;, 
+                       n = length(z$Cell_Diameter_um), args = list(shape=shapeML, rate=rateML))
+p1 + stat + stat2 + stat3 + stat4</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+The brown curve represents the gamma distribution, which often fits
+biological data well and appears to be a good fit for this data set.</p>
+<p>Fit a beta distribution</p>
+<pre class="r"><code>pSpecial &lt;- ggplot(data=z, aes(x=Cell_Diameter_um/(max(Cell_Diameter_um) + 0.1), y=..density..)) +
+  geom_histogram(color=&quot;grey60&quot;, fill=&quot;cornsilk&quot;, size=0.2) + 
+  xlim(c(0,1)) +
+  geom_density(size=0.75, linetype=&quot;dotted&quot;)
+
+betaPars &lt;- fitdistr(x=z$Cell_Diameter_um/max(z$Cell_Diameter_um + 0.1), start=list(shape1=1, shape2=2), &quot;beta&quot;)</code></pre>
+<pre><code>## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
+## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
+## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
+## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
+## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced</code></pre>
+<pre class="r"><code>shape1ML &lt;- betaPars$estimate[&quot;shape1&quot;]
+shape2ML &lt;- betaPars$estimate[&quot;shape2&quot;]
+
+statSpecial &lt;- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour=&quot;orchid&quot;, 
+                             n = length(z$Cell_Diameter_um), args = list(shape1=shape1ML, shape2=shape2ML))
+pSpecial + statSpecial</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_bar()`).</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+The purple curve represents the beta distribution, but since it assumes
+the largest point is the true upper bound, it is not the best fit</p>
+<p>Determine the best-fitting distribution Based on the visual
+comparison, the gamma distribution appears to be the best fit. This
+makes sense because biological data often follow a gamma distribution
+due to natural variability.</p>
+<p>Simulate a new data set using the best-fitting distribution</p>
+<pre class="r"><code>new_data &lt;- rgamma(n=length(z$Cell_Diameter_um), shape=shapeML, rate=rateML)
+df_new &lt;- data.frame(Cell_Diameter_um=new_data)
+
+# Plot histogram of simulated data
+p2 &lt;- ggplot(data=df_new, aes(x=Cell_Diameter_um, y=..density..)) +
+  geom_histogram(color=&quot;grey60&quot;, fill=&quot;lightblue&quot;, size=0.2) +
+  geom_density(linetype=&quot;dotted&quot;, size=0.75)
+print(p2)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+Comparison of original and simulated data</p>
+<pre class="r"><code>p1 + stat4  # Original data with gamma fit</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>p2  # Simulated data</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p>How do the two histogram profiles compare? The simulated histogram
+closely matches the original data. The general shape and spread are
+similar. Some minor deviations occur due to randomness in sampling.</p>
+<p>Does the model do a good job of simulating realistic data? Yes, the
+gamma model does a good job because the histogram profiles are very
+similar, gamma distributions are often appropriate for biological<br />
+measurements, and the empirical and modeled density curves align
+well</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

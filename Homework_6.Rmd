@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #Load necessary librarues
 library(ggplot2)
 library(MASS)
-z <- read.table("cellular_biology.csv",header=TRUE,sep=",")
+z <- read.table("cellular_biology_data.csv",header=TRUE,sep=",")
 str(z)
 summary(z)
 ```
