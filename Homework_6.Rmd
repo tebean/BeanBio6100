@@ -24,9 +24,10 @@ p1 <- ggplot(data=z, aes(x=Cell_Diameter_um, y=..density..)) +
   geom_density(linetype="dotted", size=0.75)  # Add empirical density curve
 print(p1)
 ```
+
 The histogram shows the distribution of the data. The empirical density curve helps visualize the spread and shape.
 
-Fit statistical distribution
+Fit statistical distribution:
 
 Fit a normal distribution
 ```{r}
@@ -40,6 +41,7 @@ stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="red",
                       n = length(z$Cell_Diameter_um), args = list(mean = meanML, sd = sdML))
 p1 + stat
 ```
+
 The red curve represents the normal distribution fit. The mean is slightly biased due to the lack of negative values
 
 Fit an exponential distribution
@@ -52,6 +54,7 @@ stat2 <- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour="blue",
                        n = length(z$Cell_Diameter_um), args = list(rate=rateML))
 p1 + stat + stat2
 ```
+
 The blue curve represents the exponential distribution fit. Exponential distributions model skewed data, but I will compare this to other fits.
 
 Fit a uniform distribution
@@ -60,6 +63,7 @@ stat3 <- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour="darkgreen"
                        n = length(z$Cell_Diameter_um), args = list(min=min(z$Cell_Diameter_um), max=max(z$Cell_Diameter_um)))
 p1 + stat + stat2 + stat3
 ```
+
 The green curve represents the uniform distribution, but it does not seem to fit this data set well since it is not uniformly distributed.
 
 Fit a gamma distribution
@@ -73,6 +77,7 @@ stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown",
                        n = length(z$Cell_Diameter_um), args = list(shape=shapeML, rate=rateML))
 p1 + stat + stat2 + stat3 + stat4
 ```
+
 The brown curve represents the gamma distribution, which often fits biological data well and appears to be a good fit for this data set.
 
 Fit a beta distribution
@@ -90,6 +95,7 @@ statSpecial <- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour="orch
                              n = length(z$Cell_Diameter_um), args = list(shape1=shape1ML, shape2=shape2ML))
 pSpecial + statSpecial
 ```
+
 The purple curve represents the beta distribution, but since it assumes the largest point is the true upper bound, it is not the best fit
 
 

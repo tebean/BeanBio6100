@@ -303,10 +303,10 @@ p1 &lt;- ggplot(data=z, aes(x=Cell_Diameter_um, y=..density..)) +
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Homework_6_files/figure-html/unnamed-chunk-2-1.png" width="672" />
-The histogram shows the distribution of the data. The empirical density
-curve helps visualize the spread and shape.</p>
-<p>Fit statistical distribution</p>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>The histogram shows the distribution of the data. The empirical
+density curve helps visualize the spread and shape.</p>
+<p>Fit statistical distribution:</p>
 <p>Fit a normal distribution</p>
 <pre class="r"><code>normPars &lt;- fitdistr(z$Cell_Diameter_um, &quot;normal&quot;)
 meanML &lt;- normPars$estimate[&quot;mean&quot;]
@@ -318,8 +318,8 @@ stat &lt;- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour=&quot;red
                       n = length(z$Cell_Diameter_um), args = list(mean = meanML, sd = sdML))
 p1 + stat</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Homework_6_files/figure-html/unnamed-chunk-3-1.png" width="672" />
-The red curve represents the normal distribution fit. The mean is
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>The red curve represents the normal distribution fit. The mean is
 slightly biased due to the lack of negative values</p>
 <p>Fit an exponential distribution</p>
 <pre class="r"><code>expoPars &lt;- fitdistr(z$Cell_Diameter_um, &quot;exponential&quot;)
@@ -330,17 +330,17 @@ stat2 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour=&quot;blu
                        n = length(z$Cell_Diameter_um), args = list(rate=rateML))
 p1 + stat + stat2</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Homework_6_files/figure-html/unnamed-chunk-4-1.png" width="672" />
-The blue curve represents the exponential distribution fit. Exponential
-distributions model skewed data, but I will compare this to other
-fits.</p>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The blue curve represents the exponential distribution fit.
+Exponential distributions model skewed data, but I will compare this to
+other fits.</p>
 <p>Fit a uniform distribution</p>
 <pre class="r"><code>stat3 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour=&quot;darkgreen&quot;, 
                        n = length(z$Cell_Diameter_um), args = list(min=min(z$Cell_Diameter_um), max=max(z$Cell_Diameter_um)))
 p1 + stat + stat2 + stat3</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Homework_6_files/figure-html/unnamed-chunk-5-1.png" width="672" />
-The green curve represents the uniform distribution, but it does not
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The green curve represents the uniform distribution, but it does not
 seem to fit this data set well since it is not uniformly
 distributed.</p>
 <p>Fit a gamma distribution</p>
@@ -356,8 +356,8 @@ stat4 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour=&quot;b
                        n = length(z$Cell_Diameter_um), args = list(shape=shapeML, rate=rateML))
 p1 + stat + stat2 + stat3 + stat4</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Homework_6_files/figure-html/unnamed-chunk-6-1.png" width="672" />
-The brown curve represents the gamma distribution, which often fits
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>The brown curve represents the gamma distribution, which often fits
 biological data well and appears to be a good fit for this data set.</p>
 <p>Fit a beta distribution</p>
 <pre class="r"><code>pSpecial &lt;- ggplot(data=z, aes(x=Cell_Diameter_um/(max(Cell_Diameter_um) + 0.1), y=..density..)) +
@@ -380,9 +380,10 @@ pSpecial + statSpecial</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
 ## (`geom_bar()`).</code></pre>
-<p><img src="Homework_6_files/figure-html/unnamed-chunk-7-1.png" width="672" />
-The purple curve represents the beta distribution, but since it assumes
-the largest point is the true upper bound, it is not the best fit</p>
+<p><img src="Homework_6_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The purple curve represents the beta distribution, but since it
+assumes the largest point is the true upper bound, it is not the best
+fit</p>
 <p>Determine the best-fitting distribution Based on the visual
 comparison, the gamma distribution appears to be the best fit. This
 makes sense because biological data often follow a gamma distribution
