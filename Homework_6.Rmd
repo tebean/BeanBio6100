@@ -115,11 +115,10 @@ p2  # Simulated data
 ```
 
 How do the two histogram profiles compare?
-  The simulated histogram closely matches the original data. The general shape   and spread are similar. Some minor deviations occur due to randomness in       sampling. 
+The simulated histogram closely matches the original data. The general shape  and spread are similar. Some minor deviations occur due to randomness in sampling. 
   
-Does the model do a good job of simulating realistic data?
-  Yes, the gamma model does a good job because the histogram profiles are very   similar, gamma distributions are often appropriate for biological            
-  measurements, and the empirical and modeled density curves align well
+Does the model do a good job of simulating realistic data? 
+Yes, the gamma model does a good job because the histogram profiles are very similar, gamma distributions are often appropriate for biological measurements, and the empirical and modeled density curves align well
 
 
 
