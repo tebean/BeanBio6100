@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2025-04-08" />
+
+<title>Homework10</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taylor Bean's Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Homework_Files.html">Homework_Files</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework10</h1>
+<h4 class="date">2025-04-08</h4>
+
+</div>
+
+
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<pre class="r"><code># Load libraries
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(ggthemes)
+library(ggridges)
+library(ggrepel)
+library(treemapify)</code></pre>
+<pre class="r"><code># Load the Cheese Characteristics dataset
+cheese &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-06-04/cheeses.csv&#39;)</code></pre>
+<pre><code>## Rows: 1187 Columns: 19
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (17): cheese, url, milk, country, region, family, type, fat_content, cal...
+## lgl  (2): vegetarian, vegan
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code># Peek at the data
+glimpse(cheese)</code></pre>
+<pre><code>## Rows: 1,187
+## Columns: 19
+## $ cheese          &lt;chr&gt; &quot;Aarewasser&quot;, &quot;Abbaye de Belloc&quot;, &quot;Abbaye de Belval&quot;, …
+## $ url             &lt;chr&gt; &quot;https://www.cheese.com/aarewasser/&quot;, &quot;https://www.che…
+## $ milk            &lt;chr&gt; &quot;cow&quot;, &quot;sheep&quot;, &quot;cow&quot;, &quot;cow&quot;, &quot;cow&quot;, &quot;cow&quot;, &quot;cow&quot;, &quot;co…
+## $ country         &lt;chr&gt; &quot;Switzerland&quot;, &quot;France&quot;, &quot;France&quot;, &quot;France&quot;, &quot;France&quot;,…
+## $ region          &lt;chr&gt; NA, &quot;Pays Basque&quot;, NA, &quot;Burgundy&quot;, &quot;Savoie&quot;, &quot;province…
+## $ family          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, &quot;Cheddar&quot;, NA, NA, NA, NA,…
+## $ type            &lt;chr&gt; &quot;semi-soft&quot;, &quot;semi-hard, artisan&quot;, &quot;semi-hard&quot;, &quot;semi-…
+## $ fat_content     &lt;chr&gt; NA, NA, &quot;40-46%&quot;, NA, NA, NA, &quot;50%&quot;, NA, &quot;45%&quot;, NA, NA…
+## $ calcium_content &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ texture         &lt;chr&gt; &quot;buttery&quot;, &quot;creamy, dense, firm&quot;, &quot;elastic&quot;, &quot;creamy, …
+## $ rind            &lt;chr&gt; &quot;washed&quot;, &quot;natural&quot;, &quot;washed&quot;, &quot;washed&quot;, &quot;washed&quot;, &quot;wa…
+## $ color           &lt;chr&gt; &quot;yellow&quot;, &quot;yellow&quot;, &quot;ivory&quot;, &quot;white&quot;, &quot;white&quot;, &quot;pale y…
+## $ flavor          &lt;chr&gt; &quot;sweet&quot;, &quot;burnt caramel&quot;, NA, &quot;acidic, milky, smooth&quot;,…
+## $ aroma           &lt;chr&gt; &quot;buttery&quot;, &quot;lanoline&quot;, &quot;aromatic&quot;, &quot;barnyardy, earthy&quot;…
+## $ vegetarian      &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, …
+## $ vegan           &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
+## $ synonyms        &lt;chr&gt; NA, &quot;Abbaye Notre-Dame de Belloc&quot;, NA, NA, NA, NA, NA,…
+## $ alt_spellings   &lt;chr&gt; NA, NA, NA, NA, &quot;Tamié, Trappiste de Tamie, Abbey of T…
+## $ producers       &lt;chr&gt; &quot;Jumi&quot;, NA, NA, NA, NA, &quot;Abbaye Cistercienne NOTRE-DAM…</code></pre>
+<ol style="list-style-type: decimal">
+<li>Treemap: number of cheese types by country</li>
+</ol>
+<pre class="r"><code># Load necessary libraries
+library(tidyverse)
+library(treemapify)
+
+# Load the Cheese Characteristics dataset
+cheese &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-06-04/cheeses.csv&#39;)</code></pre>
+<pre><code>## Rows: 1187 Columns: 19
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (17): cheese, url, milk, country, region, family, type, fat_content, cal...
+## lgl  (2): vegetarian, vegan
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code># Summarize the number of cheese types per country
+cheese_country_count &lt;- cheese %&gt;%
+  count(country, sort = TRUE) %&gt;%
+  filter(!is.na(country))
+
+# Create the treemap plot
+treemap_plot &lt;- ggplot(cheese_country_count, aes(area = n, fill = country, label = country)) +
+  geom_treemap() +
+  geom_treemap_text(color = &quot;white&quot;, place = &quot;centre&quot;, grow = TRUE) +
+  theme_void(base_size = 14) +  # Set a base font size for better readability
+  ggtitle(&quot;Cheese Types by Country&quot;) +
+  theme(plot.title = element_text(size = 16, face = &quot;bold&quot;),
+        legend.position = &quot;none&quot;)  # Hide the legend to prevent overcrowding
+
+# Display the plot
+print(treemap_plot)</code></pre>
+<p><img src="Homework10_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code># Save the plot to a file with specified dimensions
+ggsave(&quot;cheese_treemap.pdf&quot;, treemap_plot, width = 10, height = 8, dpi = 300)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Ridgeline plot: fat content by texture</li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+library(ggridges)
+
+# Clean fat_content column into numeric (average if it&#39;s a range)
+cheese_clean &lt;- cheese %&gt;%
+  filter(!is.na(fat_content), !is.na(texture)) %&gt;%
+  mutate(
+    fat_clean = str_extract_all(fat_content, &quot;\\d+&quot;) %&gt;%
+      map_dbl(~ mean(as.numeric(.)))
+  )
+
+# Now make the ridgeline plot
+ridgeline_plot &lt;- cheese_clean %&gt;%
+  ggplot(aes(x = fat_clean, y = texture, fill = texture)) +
+  geom_density_ridges(scale = 1.2, alpha = 0.7, color = &quot;black&quot;) +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = &quot;Distribution of Fat Content by Texture&quot;,
+    x = &quot;Fat Content (%)&quot;,
+    y = &quot;Texture&quot;
+  ) +
+  theme(legend.position = &quot;none&quot;)
+
+ridgeline_plot</code></pre>
+<pre><code>## Picking joint bandwidth of 7</code></pre>
+<p><img src="Homework10_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+3. Scatter plot: fat vs moisture by milk type with annotations</p>
+<pre class="r"><code># Scatter plot with annotations
+library(tidyverse)
+library(ggridges)
+cheese_clean &lt;- cheese %&gt;%
+  filter(!is.na(fat_content) &amp; !is.na(milk)) %&gt;%
+  mutate(
+    fat_content_numeric = str_extract_all(fat_content, &quot;\\d+&quot;) %&gt;%
+      map_dbl(~ mean(as.numeric(.)))
+  )
+ggplot(cheese_clean, aes(x = fat_content_numeric, y = milk, fill = milk)) +
+  geom_density_ridges(scale = 1.2, alpha = 0.7, color = &quot;black&quot;) +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = &quot;Distribution of Fat Content by Milk Type&quot;,
+    x = &quot;Fat Content (%)&quot;,
+    y = &quot;Milk Type&quot;
+  ) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<pre><code>## Picking joint bandwidth of 5.95</code></pre>
+<p><img src="Homework10_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+4. Mosaic-style bar plot: milk type vs texture</p>
+<pre class="r"><code># Load necessary libraries
+library(tidyverse)
+library(ggplot2)
+
+# Load the Cheese Characteristics dataset
+cheese &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv&#39;)</code></pre>
+<pre><code>## Rows: 1187 Columns: 19
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (17): cheese, url, milk, country, region, family, type, fat_content, cal...
+## lgl  (2): vegetarian, vegan
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code># Data Cleaning and Preparation
+cheese_clean &lt;- cheese %&gt;%
+  # Filter out rows with missing fat_content or calcium_content
+  filter(!is.na(fat_content) &amp; !is.na(calcium_content)) %&gt;%
+  # Extract numeric values from fat_content and calcium_content
+  mutate(
+    fat_content_numeric = str_extract(fat_content, &quot;\\d+&quot;) %&gt;% as.numeric(),
+    calcium_content_numeric = str_extract(calcium_content, &quot;\\d+&quot;) %&gt;% as.numeric()
+  ) %&gt;%
+  # Remove rows where extraction failed (resulting in NA values)
+  filter(!is.na(fat_content_numeric) &amp; !is.na(calcium_content_numeric))
+
+# Create the 2D Density Plot
+density_plot &lt;- ggplot(cheese_clean, aes(x = fat_content_numeric, y = calcium_content_numeric)) +
+  geom_point(alpha = 0.5, color = &quot;blue&quot;) +  # Scatter plot layer
+  geom_density2d(aes(color = ..level..), size = 1) +  # 2D density contours
+  scale_color_viridis_c() +  # Color scale for density levels
+  theme_minimal(base_size = 14) +  # Minimal theme with base font size
+  labs(
+    title = &quot;2D Density Plot of Fat Content vs. Calcium Content in Cheeses&quot;,
+    x = &quot;Fat Content (%)&quot;,
+    y = &quot;Calcium Content (mg)&quot;,
+    color = &quot;Density Level&quot;
+  )</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code># Display the plot
+print(density_plot)</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..level..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(level)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="Homework10_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code># Save the plot to a file
+ggsave(&quot;cheese_density_plot.pdf&quot;, density_plot, width = 10, height = 8, dpi = 300)</code></pre>
+<p>```</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
