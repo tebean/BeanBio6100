@@ -1,0 +1,99 @@
+---
+title: "Homework_9"
+output: html_document
+date: "2025-03-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(devtools)
+install_github("ngotelli/upscaler")
+library(upscaler
+library(ggplot2)
+```
+
+set up logging
+```{r}
+set_up_log()
+echo_log_console(TRUE)
+```
+
+Load user defined functions
+```{r}
+source("Function/clean_data.R")
+source("Functions/extract_year.R")
+source("Functions/calc_abundance.R")
+source("Functions/calc_richness.R")
+source("Functions/run_regression.R")
+source("Functions/make_histogram.R")
+```
+
+Initialize summary data frame
+```{r}
+results <- data.frame(
+  file = character(),
+  year = integer(),
+  abundance = numeric(),
+  richness = numeric(),
+  slope = numeric(),
+  intercept = numeric(),   
+  r_squared = numeric(),
+  p_value = numeric(),
+  stringsAsFactors = FALSE
+)
+abundance_all <- c()
+richness_all <- c()
+
+years <- 2015:2023
+
+for (year in years) {
+  file_path <- paste0("OriginalData/", year, "/", year, "_countdata.csv")
+  df <- read.csv(file_path)
+
+  df_clean <- clean_data(df)
+  year_val <- extract_year(file_path)
+  abundance <- calc_abundance(df_clean)
+  richness <- calc_richness(df_clean)
+
+  model_summary <- run_regression(abundance, richness)
+
+  results <- rbind(results, data.frame(
+    file = paste0(year, "_countdata.csv"),
+    year = year_val,
+    abundance = abundance,
+    richness = richness,
+    slope = model_summary$coefficients[2, 1],
+    intercept = model_summary$coefficients[1, 1],
+    r_squared = model_summary$r.squared,
+    p_value = model_summary$coefficients[2, 4]
+  ))
+}
+
+
+for (year in years) {
+  file_path <- paste0("OriginalData/", year, "/", year, "_countdata.csv")
+  df <- read.csv(file_path)
+
+  df_clean <- clean_data(df)
+  year_val <- extract_year(file_path)
+  abundance <- calc_abundance(df_clean)
+  richness <- calc_richness(df_clean)
+
+  model_summary <- run_regression(abundance, richness)
+  abundance_all <- c(abundance_all, abundance)
+  richness_all <- c(richness_all, richness)
+
+  l(paste("Finished processing year:", year))
+}
+
+write.csv(results, "Outputs/summary_stats.csv", row.names = FALSE)
+make_histograms(abundance_all, richness_all)
+l("All files processed. Summary and plots saved.")
+```
+
+  
+  
+  

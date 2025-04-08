@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #1 
-```
+```{r}
 #Assign a single random integer between 3 and 10 n_dims
 set.seed(Sys.time()) #Ensure different values for each run
 n_dimes <_ sample (3:10, 1)
@@ -60,7 +60,7 @@ print(paste("Type of eigenvectors:", typeof(eigen_result$vectors)))
 ```
 
 #2
-```
+```{r}
 #Create a 4x4 matrix filled with random uniform values
 set.seed(123) #For reproducibility
 my_matrix <- matrix(runig(16), nrow=4, ncol=4)
@@ -108,7 +108,7 @@ print(typeof(atomic_vector))
 ```
 
 #3
-```
+```{r}
 #Set seed for reproducibility
 set.seed(123)
 
