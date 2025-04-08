@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2025-04-08" />
+
+<title>Homework_9</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taylor Bean's Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Homework_Files.html">Homework_Files</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework_9</h1>
+<h4 class="date">2025-04-08</h4>
+
+</div>
+
+
+<pre class="r"><code>base_dir &lt;- &quot;~/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data&quot;
+
+countdata_files &lt;- list.files(
+  path = base_dir,
+  pattern = &quot;_count_data\\.[Cc][Ss][Vv]$&quot;,  # e.g. 2015_count_data.csv
+  full.names = TRUE
+)
+
+print(countdata_files)</code></pre>
+<pre><code>## [1] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2015_count_data.csv&quot;
+## [2] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2016_count_data.csv&quot;
+## [3] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2017_count_data.csv&quot;
+## [4] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2018_count_data.csv&quot;
+## [5] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2019_count_data.csv&quot;
+## [6] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2020_count_data.csv&quot;
+## [7] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2021_count_data.csv&quot;
+## [8] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2022_count_data.csv&quot;
+## [9] &quot;/Users/taylorbean/Desktop/UVM/Master&#39;s/Spring 2025/Computational Biology/BeanBio6100/count_data/2023_count_data.csv&quot;</code></pre>
+<p>Define helper functions</p>
+<pre class="r"><code>clean_data &lt;- function(df) {
+  df %&gt;% drop_na(scientificName, clusterSize)
+}
+
+extract_year &lt;- function(file_path) {
+  str_extract(basename(file_path), &quot;\\d{4}&quot;)
+}
+
+calculate_abundance &lt;- function(df) {
+  sum(df$clusterSize, na.rm = TRUE)
+}
+
+calculate_richness &lt;- function(df) {
+  n_distinct(df$scientificName)
+}</code></pre>
+<p>loop through files and build data frames</p>
+<pre class="r"><code>summary_stats &lt;- data.frame()
+all_year_data &lt;- data.frame()
+
+for (file in countdata_files) {
+  df &lt;- read_csv(file, show_col_types = FALSE)
+  df &lt;- clean_data(df)
+
+  # Skip files with missing species or count data
+  if (nrow(df) == 0 || all(is.na(df$clusterSize)) || all(is.na(df$scientificName))) {
+    cat(&quot;Skipping file (no valid data):&quot;, basename(file), &quot;\n&quot;)
+    next
+  }
+
+  # Calculate year, abundance, richness
+  year &lt;- as.integer(extract_year(file))
+  abundance &lt;- calculate_abundance(df)
+  richness &lt;- calculate_richness(df)
+
+  # Skip if either stat is missing
+  if (is.na(abundance) || is.na(richness)) {
+    cat(&quot;Skipping file (NA in abundance/richness):&quot;, basename(file), &quot;\n&quot;)
+    next
+  }
+
+  # Debug print
+  cat(&quot;✅ Included — Year:&quot;, year, &quot;| Abundance:&quot;, abundance, &quot;| Richness:&quot;, richness, &quot;\n&quot;)
+
+  summary_stats &lt;- rbind(summary_stats, data.frame(
+    file = basename(file),
+    year = year,
+    abundance = abundance,
+    richness = richness
+  ))
+
+  all_year_data &lt;- rbind(all_year_data, data.frame(
+    year = year,
+    abundance = abundance,
+    richness = richness
+  ))
+}</code></pre>
+<pre><code>## ✅ Included — Year: 2015 | Abundance: 459 | Richness: 40 
+## ✅ Included — Year: 2016 | Abundance: 696 | Richness: 38 
+## ✅ Included — Year: 2017 | Abundance: 411 | Richness: 34 
+## ✅ Included — Year: 2018 | Abundance: 515 | Richness: 36 
+## ✅ Included — Year: 2019 | Abundance: 410 | Richness: 43 
+## ✅ Included — Year: 2020 | Abundance: 489 | Richness: 45 
+## ✅ Included — Year: 2021 | Abundance: 920 | Richness: 49 
+## ✅ Included — Year: 2022 | Abundance: 592 | Richness: 38 
+## ✅ Included — Year: 2023 | Abundance: 523 | Richness: 41</code></pre>
+<p>Regression analysis</p>
+<pre class="r"><code># Ensure numeric
+all_year_data$abundance &lt;- as.numeric(all_year_data$abundance)
+all_year_data$richness &lt;- as.numeric(all_year_data$richness)
+
+# Remove NAs
+cleaned_data &lt;- all_year_data %&gt;% drop_na(abundance, richness)
+
+# Print for verification
+cat(&quot;Rows in all_year_data:&quot;, nrow(all_year_data), &quot;\n&quot;)</code></pre>
+<pre><code>## Rows in all_year_data: 9</code></pre>
+<pre class="r"><code>cat(&quot;Rows in cleaned_data:&quot;, nrow(cleaned_data), &quot;\n&quot;)</code></pre>
+<pre><code>## Rows in cleaned_data: 9</code></pre>
+<pre class="r"><code>print(head(cleaned_data))</code></pre>
+<pre><code>##   year abundance richness
+## 1 2015       459       40
+## 2 2016       696       38
+## 3 2017       411       34
+## 4 2018       515       36
+## 5 2019       410       43
+## 6 2020       489       45</code></pre>
+<pre class="r"><code># Run model if data exists
+if (nrow(cleaned_data) &gt; 1) {
+  model &lt;- lm(richness ~ abundance, data = cleaned_data)
+  summary(model)
+} else {
+  print(&quot;Not enough valid data to run regression.&quot;)
+}</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = richness ~ abundance, data = cleaned_data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -4.501 -3.819  1.011  3.180  5.566 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 32.187651   5.354615   6.011 0.000536 ***
+## abundance    0.014818   0.009264   1.600 0.153738    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.269 on 7 degrees of freedom
+## Multiple R-squared:  0.2677, Adjusted R-squared:  0.163 
+## F-statistic: 2.558 on 1 and 7 DF,  p-value: 0.1537</code></pre>
+<p>Histogram</p>
+<pre class="r"><code># Use cleaned data if available
+plot_data &lt;- if (nrow(cleaned_data) &gt; 0) cleaned_data else all_year_data
+
+# Ensure numeric columns
+plot_data$abundance &lt;- as.numeric(plot_data$abundance)
+plot_data$richness &lt;- as.numeric(plot_data$richness)
+
+cat(&quot;Year:&quot;, year, &quot;| Abundance:&quot;, abundance, &quot;| Richness:&quot;, richness, &quot;\n&quot;)</code></pre>
+<pre><code>## Year: 2023 | Abundance: 523 | Richness: 41</code></pre>
+<pre class="r"><code># Filter out NA values
+plot_data &lt;- plot_data %&gt;% filter(!is.na(abundance) &amp; !is.na(richness))
+
+# Debug output
+cat(&quot;Rows available for plotting:&quot;, nrow(plot_data), &quot;\n&quot;)</code></pre>
+<pre><code>## Rows available for plotting: 9</code></pre>
+<pre class="r"><code># Plot if data exists
+if (nrow(plot_data) &gt; 0) {
+  ggplot(plot_data, aes(x = abundance)) +
+    geom_histogram(binwidth = 10, fill = &quot;skyblue&quot;, color = &quot;black&quot;) +
+    labs(title = &quot;Histogram of Bird Abundance&quot;, x = &quot;Abundance&quot;, y = &quot;Frequency&quot;)
+
+  ggplot(plot_data, aes(x = richness)) +
+    geom_histogram(binwidth = 2, fill = &quot;lightgreen&quot;, color = &quot;black&quot;) +
+    labs(title = &quot;Histogram of Species Richness&quot;, x = &quot;Richness&quot;, y = &quot;Frequency&quot;)
+} else {
+  print(&quot;Still no valid data available to plot histograms.&quot;)
+}</code></pre>
+<p><img src="Homework9_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+```</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
