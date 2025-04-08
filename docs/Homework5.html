@@ -271,9 +271,9 @@ $(document).ready(function () {
 
 
 <p>#1</p>
-<pre><code>#Assign a single random integer between 3 and 10 n_dims
+<pre class="r"><code>#Assign a single random integer between 3 and 10 n_dims
 set.seed(Sys.time()) #Ensure different values for each run
-n_dimes &lt;_ sample (3:10, 1)
+n_dims &lt;- sample (3:10, 1)
 
 #Create a vector of consecutive integers from 1 to n_dims^2
 vec &lt;- 1:(n_dims^2)
@@ -285,43 +285,62 @@ shuffled_vec &lt;- sample(vec)
 matrix_obj &lt;- matrix(shuffled_vec, nrow = n_dims, ncol = n_dims)
 
 #Print the original matrix
-print(&quot;Original Matrix:&quot;)
-print(matrix_obj)
-
-#Transpose the matrix using the t() function
+print(&quot;Original Matrix:&quot;)</code></pre>
+<pre><code>## [1] &quot;Original Matrix:&quot;</code></pre>
+<pre class="r"><code>print(matrix_obj)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    8    3    2
+## [2,]    9    6    1
+## [3,]    5    7    4</code></pre>
+<pre class="r"><code>#Transpose the matrix using the t() function
 transposed_matrix &lt;- t(matrix_obj)
 
 #Print the transposed matrix
-print(&quot;Transposed Matrix:&quot;)
-print(transposed_matrix)
-
-#Calculate sum and mean of the first and last rows
+print(&quot;Transposed Matrix:&quot;)</code></pre>
+<pre><code>## [1] &quot;Transposed Matrix:&quot;</code></pre>
+<pre class="r"><code>print(transposed_matrix)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    8    9    5
+## [2,]    3    6    7
+## [3,]    2    1    4</code></pre>
+<pre class="r"><code>#Calculate sum and mean of the first and last rows
 first_row_sum &lt;- sum(matrix_obj[1, ])
 first_row_mean &lt;- mean(matrix_obj[1, ])
 last_row_sum &lt;- sum(matrix_obj[n_dims, ])
 last_row_mean &lt;- mean(matrix_obj[n_dims, ])
 
-print(paste(&quot;First row sum:&quot;, first_row_sum))
-print(paste(&quot;First row mean:&quot;, first_row_mean))
-print(paste(&quot;Last row sum:&quot;, last_row_sum))
-print(paste(&quot;Last row mean:&quot;, last_row_mean))
-
-#Use the eigen() function on the matrix
+print(paste(&quot;First row sum:&quot;, first_row_sum))</code></pre>
+<pre><code>## [1] &quot;First row sum: 13&quot;</code></pre>
+<pre class="r"><code>print(paste(&quot;First row mean:&quot;, first_row_mean))</code></pre>
+<pre><code>## [1] &quot;First row mean: 4.33333333333333&quot;</code></pre>
+<pre class="r"><code>print(paste(&quot;Last row sum:&quot;, last_row_sum))</code></pre>
+<pre><code>## [1] &quot;Last row sum: 16&quot;</code></pre>
+<pre class="r"><code>print(paste(&quot;Last row mean:&quot;, last_row_mean))</code></pre>
+<pre><code>## [1] &quot;Last row mean: 5.33333333333333&quot;</code></pre>
+<pre class="r"><code>#Use the eigen() function on the matrix
 eigen_result &lt;- eigen(matrix_obj)
 
 #Print eigen values and eigen vectors
-print(&quot;Eigenvalues:&quot;)
-print(eigen_result$values)
-print(&quot;Eigenvectors:&quot;)
-print(eigen_result$vectors)
-
-#Check the type of eigen values and eigen vectors
-print(paste(&quot;Type of eigenvalues:&quot;, typeof(eigen_result$values)))
-print(paste(&quot;Type of eigenvectors:&quot;, typeof(eigen_result$vectors)))</code></pre>
+print(&quot;Eigenvalues:&quot;)</code></pre>
+<pre><code>## [1] &quot;Eigenvalues:&quot;</code></pre>
+<pre class="r"><code>print(eigen_result$values)</code></pre>
+<pre><code>## [1] 14.347623+0.000000i  1.826188+2.064489i  1.826188-2.064489i</code></pre>
+<pre class="r"><code>print(&quot;Eigenvectors:&quot;)</code></pre>
+<pre><code>## [1] &quot;Eigenvectors:&quot;</code></pre>
+<pre class="r"><code>print(eigen_result$vectors)</code></pre>
+<pre><code>##              [,1]                  [,2]                  [,3]
+## [1,] 0.4839750+0i  0.1025520+0.2386953i  0.1025520-0.2386953i
+## [2,] 0.5982988+0i  0.1901460-0.4206475i  0.1901460+0.4206475i
+## [3,] 0.6385975+0i -0.8481791+0.0000000i -0.8481791+0.0000000i</code></pre>
+<pre class="r"><code>#Check the type of eigen values and eigen vectors
+print(paste(&quot;Type of eigenvalues:&quot;, typeof(eigen_result$values)))</code></pre>
+<pre><code>## [1] &quot;Type of eigenvalues: complex&quot;</code></pre>
+<pre class="r"><code>print(paste(&quot;Type of eigenvectors:&quot;, typeof(eigen_result$vectors)))</code></pre>
+<pre><code>## [1] &quot;Type of eigenvectors: complex&quot;</code></pre>
 <p>#2</p>
-<pre><code>#Create a 4x4 matrix filled with random uniform values
+<pre class="r"><code>#Create a 4x4 matrix filled with random uniform values
 set.seed(123) #For reproducibility
-my_matrix &lt;- matrix(runig(16), nrow=4, ncol=4)
+my_matrix &lt;- matrix(runif(16), nrow=4, ncol=4)
 
 #Create a 100-element logival vector (TRUE/FALSE)
 my_logical &lt;- runif(100) &gt; 0.5 #Generates TRUE if value &gt;0.5 , FALSE otherwise
@@ -344,27 +363,41 @@ new_list &lt;- list (
 )
 
 #Print the new list
-print(&quot;New List:&quot;)
-print(new_list)
-
-#Check data types using typeof()
-print(&quot;Data types of new list components:&quot;)
-print(typeof(new_list$matrix_element)) # type of matrix element
-print(typeof(new_list$logical_element)) #type of logical element
-print(typeof(new_list$letter_element)) #type of letter element
-
-#Combine the elements into a single atomic vector
+print(&quot;New List:&quot;)</code></pre>
+<pre><code>## [1] &quot;New List:&quot;</code></pre>
+<pre class="r"><code>print(new_list)</code></pre>
+<pre><code>## $matrix_element
+## [1] 0.0455565
+## 
+## $logical_element
+## [1] FALSE
+## 
+## $letter_element
+## [1] &quot;n&quot;</code></pre>
+<pre class="r"><code>#Check data types using typeof()
+print(&quot;Data types of new list components:&quot;)</code></pre>
+<pre><code>## [1] &quot;Data types of new list components:&quot;</code></pre>
+<pre class="r"><code>print(typeof(new_list$matrix_element)) # type of matrix element</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>print(typeof(new_list$logical_element)) #type of logical element</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>print(typeof(new_list$letter_element)) #type of letter element</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>#Combine the elements into a single atomic vector
 atomic_vector &lt;- c(new_list$matrix_element, new_list$logical_element, new_list$letter_element)
 
 #Print the atomic vector
-print(&quot;Combined Atomic Vector:&quot;)
-print(atomic_vector)
-
-#Check data type of the combined atomic vector
-print(&quot;Data type of combined atomic vector:&quot;)
-print(typeof(atomic_vector))</code></pre>
+print(&quot;Combined Atomic Vector:&quot;)</code></pre>
+<pre><code>## [1] &quot;Combined Atomic Vector:&quot;</code></pre>
+<pre class="r"><code>print(atomic_vector)</code></pre>
+<pre><code>## [1] &quot;0.0455564993899316&quot; &quot;FALSE&quot;              &quot;n&quot;</code></pre>
+<pre class="r"><code>#Check data type of the combined atomic vector
+print(&quot;Data type of combined atomic vector:&quot;)</code></pre>
+<pre><code>## [1] &quot;Data type of combined atomic vector:&quot;</code></pre>
+<pre class="r"><code>print(typeof(atomic_vector))</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
 <p>#3</p>
-<pre><code>#Set seed for reproducibility
+<pre class="r"><code>#Set seed for reproducibility
 set.seed(123)
 
 #Create a data framw with two variables
@@ -374,31 +407,114 @@ my_data &lt;-data.frame(
 )
 
 #Print the original data frame
-print(&quot;Original Data Frame:&quot;)
-print(my_data)
-
-#Replace 4 random numbers in &#39;my_unis&#39; column with NA
+print(&quot;Original Data Frame:&quot;)</code></pre>
+<pre><code>## [1] &quot;Original Data Frame:&quot;</code></pre>
+<pre class="r"><code>print(my_data)</code></pre>
+<pre><code>##      my_unis my_letters
+## 1  2.8757752          H
+## 2  7.8830514          G
+## 3  4.0897692          J
+## 4  8.8301740          I
+## 5  9.4046728          S
+## 6  0.4555650          D
+## 7  5.2810549          N
+## 8  8.9241904          Q
+## 9  5.5143501          K
+## 10 4.5661474          Y
+## 11 9.5683335          E
+## 12 4.5333416          L
+## 13 6.7757064          X
+## 14 5.7263340          M
+## 15 1.0292468          V
+## 16 8.9982497          W
+## 17 2.4608773          R
+## 18 0.4205953          O
+## 19 3.2792072          C
+## 20 9.5450365          U
+## 21 8.8953932          P
+## 22 6.9280341          F
+## 23 6.4050681          Z
+## 24 9.9426978          B
+## 25 6.5570580          A
+## 26 7.0853047          T</code></pre>
+<pre class="r"><code>#Replace 4 random numbers in &#39;my_unis&#39; column with NA
 my_data$my_unis[sample(1:26, 4)] &lt;- NA
 
 #Print the modified data frame 
-print(&quot;Data Frame with NA values:&quot;)
-print(my_data)
-
-#Identify which rows have missing values in &#39;my_unis&#39;
+print(&quot;Data Frame with NA values:&quot;)</code></pre>
+<pre><code>## [1] &quot;Data Frame with NA values:&quot;</code></pre>
+<pre class="r"><code>print(my_data)</code></pre>
+<pre><code>##      my_unis my_letters
+## 1  2.8757752          H
+## 2  7.8830514          G
+## 3  4.0897692          J
+## 4  8.8301740          I
+## 5         NA          S
+## 6  0.4555650          D
+## 7  5.2810549          N
+## 8         NA          Q
+## 9  5.5143501          K
+## 10 4.5661474          Y
+## 11 9.5683335          E
+## 12        NA          L
+## 13        NA          X
+## 14 5.7263340          M
+## 15 1.0292468          V
+## 16 8.9982497          W
+## 17 2.4608773          R
+## 18 0.4205953          O
+## 19 3.2792072          C
+## 20 9.5450365          U
+## 21 8.8953932          P
+## 22 6.9280341          F
+## 23 6.4050681          Z
+## 24 9.9426978          B
+## 25 6.5570580          A
+## 26 7.0853047          T</code></pre>
+<pre class="r"><code>#Identify which rows have missing values in &#39;my_unis&#39;
 na_rows &lt;- which(is.na(my_data$my_unis))
-print(&quot;Rows with missing values:&quot;
-print(na_rows)
-
-#Reorder the data frams by &#39;my_letters&#39; in alphabetical order
+print(&quot;Rows with missing values:&quot;)</code></pre>
+<pre><code>## [1] &quot;Rows with missing values:&quot;</code></pre>
+<pre class="r"><code>print(na_rows)</code></pre>
+<pre><code>## [1]  5  8 12 13</code></pre>
+<pre class="r"><code>#Reorder the data frames by &#39;my_letters&#39; in alphabetical order
 my_data &lt;- my_data[order(my_data$my_letters), ]
 
 #Print the sorted data frame
-print(&quot;Reordered Data Frame:&quot;)
-print(my_data)
-
-#Calculate the mean of &#39;my_unis&#39; column, ignoring NA values
+print(&quot;Reordered Data Frame:&quot;)</code></pre>
+<pre><code>## [1] &quot;Reordered Data Frame:&quot;</code></pre>
+<pre class="r"><code>print(my_data)</code></pre>
+<pre><code>##      my_unis my_letters
+## 25 6.5570580          A
+## 24 9.9426978          B
+## 19 3.2792072          C
+## 6  0.4555650          D
+## 11 9.5683335          E
+## 22 6.9280341          F
+## 2  7.8830514          G
+## 1  2.8757752          H
+## 4  8.8301740          I
+## 3  4.0897692          J
+## 9  5.5143501          K
+## 12        NA          L
+## 14 5.7263340          M
+## 7  5.2810549          N
+## 18 0.4205953          O
+## 21 8.8953932          P
+## 8         NA          Q
+## 17 2.4608773          R
+## 5         NA          S
+## 26 7.0853047          T
+## 20 9.5450365          U
+## 15 1.0292468          V
+## 16 8.9982497          W
+## 13        NA          X
+## 10 4.5661474          Y
+## 23 6.4050681          Z</code></pre>
+<pre class="r"><code>#Calculate the mean of &#39;my_unis&#39; column, ignoring NA values
 column_mean &lt;- mean(my_data$my_unis, na.rm = TRUE)
 print(paste(&quot;Mean of my_unis (excluding NAs):&quot;, column_mean))</code></pre>
+<pre><code>## [1] &quot;Mean of my_unis (excluding NAs): 5.74260560689833&quot;</code></pre>
 
 
 

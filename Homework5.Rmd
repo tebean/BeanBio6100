@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #Assign a single random integer between 3 and 10 n_dims
 set.seed(Sys.time()) #Ensure different values for each run
-n_dimes <_ sample (3:10, 1)
+n_dims <- sample (3:10, 1)
 
 #Create a vector of consecutive integers from 1 to n_dims^2
 vec <- 1:(n_dims^2)
@@ -63,7 +63,7 @@ print(paste("Type of eigenvectors:", typeof(eigen_result$vectors)))
 ```{r}
 #Create a 4x4 matrix filled with random uniform values
 set.seed(123) #For reproducibility
-my_matrix <- matrix(runig(16), nrow=4, ncol=4)
+my_matrix <- matrix(runif(16), nrow=4, ncol=4)
 
 #Create a 100-element logival vector (TRUE/FALSE)
 my_logical <- runif(100) > 0.5 #Generates TRUE if value >0.5 , FALSE otherwise
@@ -131,10 +131,10 @@ print(my_data)
 
 #Identify which rows have missing values in 'my_unis'
 na_rows <- which(is.na(my_data$my_unis))
-print("Rows with missing values:"
+print("Rows with missing values:")
 print(na_rows)
 
-#Reorder the data frams by 'my_letters' in alphabetical order
+#Reorder the data frames by 'my_letters' in alphabetical order
 my_data <- my_data[order(my_data$my_letters), ]
 
 #Print the sorted data frame
