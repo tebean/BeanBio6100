@@ -1,5 +1,0 @@
----
-title: "My Website"
----
-
-Hello! Welcome to my website! This is my website for BIOL6100! Here I am learning to code and RStudio and uploading my assignments here! Join me in. my journey of learning in Computaitonal Biology :)
